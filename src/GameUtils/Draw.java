@@ -63,8 +63,14 @@ public class Draw {
         gs.setFill(Background);
     }
     public static void player(Player plr){
+     
         gs.setFill(PlrColor);
+        //If player is invisable draw outline
+        if(plr.getInvT()>=0){
+        gs.strokeOval(plr.getpX(), plr.getpY(),plr.getWitdh(), plr.getHeight());
+        }else{
         gs.fillOval(plr.getpX(), plr.getpY(),plr.getWitdh(), plr.getHeight());
+        }
         gs.setFill(Background);
     }
     public static void clear(){

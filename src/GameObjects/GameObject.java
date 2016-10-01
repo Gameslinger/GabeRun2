@@ -44,6 +44,8 @@ public abstract class GameObject {
     }
     /**
      * Adds tollerance for collision
+     * This only shifts hitbox
+     * @deprecated 
      * @param other
      * @param tolX
      * @param tolY

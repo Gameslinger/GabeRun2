@@ -15,7 +15,7 @@ import javafx.scene.paint.Color;
  */
 public enum powerUpType {
     //invisable,superSpeed
-     Freeze,lifeUp,superSize;
+     Freeze,lifeUp,superSize,inv;
     int time = -1;
     /**
      * Constructs power ups without time ex: lifeUp
@@ -41,7 +41,7 @@ public enum powerUpType {
  public static powerUpType[] vals = powerUpType.values();
  
  public static powerUpType getRandType(){
-     int typeNum = (int)( Math.random() * (powerUpType.length-1))+1;
+     int typeNum = (int)( Math.random() * (powerUpType.length));
      
      //Length is not 0 based:
      return vals[typeNum];
@@ -68,6 +68,8 @@ public enum powerUpType {
                 return Color.LIGHTCORAL;
             case lifeUp:
                 return Color.LIGHTGREEN;
+            case inv:
+                return Color.BLUEVIOLET;
             default:
                 return Color.PURPLE;
         }

@@ -7,7 +7,6 @@ package GameObjects.powerUps;
 
 import GameObjects.GameObject;
 import gaberun2.GabeRun2;
-import static gaberun2.GabeRun2.plr;
 import javafx.scene.paint.Color;
 
 /**
@@ -56,7 +55,8 @@ public class PowerUp extends GameObject {
             case lifeUp:
                 GabeRun2.plr.incLife();
                 break;
-                
+            case inv:
+                GabeRun2.plr.setInvT(3);
         }
         this.setActive(false);
     }

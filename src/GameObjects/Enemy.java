@@ -53,7 +53,7 @@ public class Enemy extends GameObject{
            miliCount++;
            
            //Updates second timer about every 60 miliseconds
-           if(miliCount>=60){
+           if(miliCount>=60 && !(plr.getInvT()>=0)){
                //How long should obj persue point before exiting scatter:
                scatterTime+=scatterTInc;
                
@@ -75,7 +75,7 @@ public class Enemy extends GameObject{
            }
         
         //TODO: Update AI?
-        if(scatter){
+        if(scatter || plr.getInvT()>=0){
             if(scatterTime >=5){
                 scatter = false;
                 scatterTInc = 0;

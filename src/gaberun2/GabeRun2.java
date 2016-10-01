@@ -114,14 +114,14 @@ public class GabeRun2 extends Application {
          //Key Released
          scene.setOnKeyReleased((event)->{
         
-        if(event.getCode()==KeyCode.W)up=false;
-        if(event.getCode()==KeyCode.S)down=false;
-        if(event.getCode()==KeyCode.A)left=false;
-        if(event.getCode()==KeyCode.D)right=false;
-         
+        if(event.getCode()==KeyCode.W || event.getCode()==KeyCode.UP)up=false;
+        if(event.getCode()==KeyCode.S || event.getCode()==KeyCode.DOWN)down=false;
+        if(event.getCode()==KeyCode.A || event.getCode()==KeyCode.LEFT)left=false;
+        if(event.getCode()==KeyCode.D || event.getCode()==KeyCode.RIGHT)right=false;
+        
          }); 
          //Player Object:
-        plr = new Player(300,300,30,30,1);
+        plr = new Player(300,300,30,30,1.5);
          //Not Complete fix collision error!!
          //barriers.add(new barrier(350, 350, 50, 50));
         new AnimationTimer(){
@@ -179,6 +179,9 @@ public class GabeRun2 extends Application {
         }else{
             plr.setSize(30,30);
         }
+        if(plr.getInvT()>=0){
+            plr.decrementInvT();
+        }
         //Moves player:
         if(up)plr.move(0,plr.getSpeed());
         if(down)plr.move(0, -plr.getSpeed());
@@ -191,15 +194,16 @@ public class GabeRun2 extends Application {
     }
     
     public void upDateEnemies(){
-        
+        if(plr.getFreezeT()>=0)plr.decFreezeT();
         for(Enemy enm : enemies){
             //If object is not active skip:
             if(!enm.isAlive())continue;
             //Does not move enemies while frozen
             if(!(plr.getFreezeT()>=0)){
+               
             enm.AI(plr);
             }
-            if(enm.isCollided(plr,5,5)){
+            if(enm.isCollided(plr)){
                 if(!(plr.getsuperSizeT() >=0)){
                     plr.gotHit();
                 }
@@ -286,7 +290,7 @@ public class GabeRun2 extends Application {
         enemies = new ArrayList();
         Coins = new ArrayList();
         lvl = 0;
-        plr = new Player(300,300,30,30,1);
+        plr = new Player(300,300,30,30,1.5);
         plr.resetAbilities();
         levelUp();
     }
