@@ -53,7 +53,7 @@ public class GabeRun2 extends Application {
      long sTime,mTime = 0;
      
      //Images
-    public static Image gabe = new Image("/Images/gabe.jpg");
+    public static Image gabe;
      @Override
      public void init(){
          //Initialize all lists:
@@ -61,7 +61,7 @@ public class GabeRun2 extends Application {
          Coins = new ArrayList();
          barriers = new ArrayList();
          powers = new ArrayList();
-         
+         gabe = new Image("/Images/gabe.jpg");
          
      }
     @Override
@@ -87,14 +87,14 @@ public class GabeRun2 extends Application {
        //Key Pressed
          scene.setOnKeyPressed((event)->{
        //  if(plr.getPlay()){
-        if(event.getCode()==KeyCode.W){
+        if(event.getCode()==KeyCode.W|| event.getCode()==KeyCode.UP){
             up = true;
             start = false;
         }
         
-        if(event.getCode()==KeyCode.S)down=true;
-        if(event.getCode()==KeyCode.A)left=true;
-        if(event.getCode()==KeyCode.D)right=true;
+        if(event.getCode()==KeyCode.S|| event.getCode()==KeyCode.DOWN)down=true;
+        if(event.getCode()==KeyCode.A|| event.getCode()==KeyCode.LEFT)left=true;
+        if(event.getCode()==KeyCode.D|| event.getCode()==KeyCode.RIGHT)right=true;
          
         if(event.getCode()==KeyCode.ESCAPE){
           
@@ -179,16 +179,26 @@ public class GabeRun2 extends Application {
     }
     
     public void upDatePlayer(){
-        //TODO: Check isAlive?
+        //Should be big?
         if(plr.getsuperSizeT()>=0){
             plr.setSize(60, 60);
             plr.dincSuperSizeT();
         }else{
             plr.setSize(30,30);
         }
+        
+        //Should player be fast:
+        if(plr.getSuperSpeedT()>=0){
+            plr.decSuperSpeedT();
+        }else{
+            plr.setBoost(1);
+        }
+        
+        //Invisibility timer count down - GOTO Enemies AI() for logic
         if(plr.getInvT()>=0){
             plr.decrementInvT();
         }
+        
         //Moves player:
         if(up)plr.move(0,plr.getSpeed());
         if(down)plr.move(0, -plr.getSpeed());

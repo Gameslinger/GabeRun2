@@ -14,8 +14,8 @@ import javafx.scene.paint.Color;
  * @author Gabe
  */
 public enum powerUpType {
-    //superSpeed
-     Freeze,lifeUp,superSize,inv;
+    //superSpeed, DuoPlr
+     Freeze,lifeUp,superSize,inv,superSpeed;
     int time = -1;
     /**
      * Constructs power ups without time ex: lifeUp
@@ -70,6 +70,8 @@ public enum powerUpType {
                 return Color.LIGHTGREEN;
             case inv:
                 return Color.BLUEVIOLET;
+            case superSpeed:
+                return Color.AQUAMARINE;
             default:
                 return Color.PURPLE;
         }

@@ -57,6 +57,10 @@ public class PowerUp extends GameObject {
                 break;
             case inv:
                 GabeRun2.plr.setInvT(3);
+                break;
+            case superSpeed:
+                GabeRun2.plr.setSuperSpeedT(3);
+                break;
         }
         this.setActive(false);
     }

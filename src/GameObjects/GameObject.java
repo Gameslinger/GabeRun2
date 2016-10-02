@@ -20,8 +20,8 @@ public abstract class GameObject {
     protected double speed;
     //Should object be rendered or considered:
     protected boolean isActive = true;
-    //Used to tell if object is frozen:
-    
+    //How much of a boost:
+    double boost = 1;
     /**
      * @param pX
      * @param pY
@@ -147,17 +147,24 @@ public abstract class GameObject {
      * @param y 
      */
     public void move(double x,double y){
-        if(pX+x < 570 && pY-y  < 570 && pX+x > 0 && pY-y > 0){
-            for(barrier barr : GabeRun2.barriers){
-                //If player would collide with barrier dow
-               if(this.isCollided(barr,-x,-y))return;
-            }
-           
-        this.pX+=x;
-        this.pY -=y;
+        if(pX+(x*boost) < 570 && pY-(y*boost)  < 570 && pX+(x*boost) > 0 && pY-(y*boost) > 0){
+//            for(barrier barr : GabeRun2.barriers){
+//                //If player would collide with barrier dow
+//               if(this.isCollided(barr,-x,-y))return;
+//            }
+           //FIX MOVING WITH BOOST!!!
+        this.pX+=x*boost;
+        this.pY -=y*boost;
         
        }
     }
+    public double getBoost(){
+            return this.boost;
+        }
+    public void setBoost(double boost){
+        this.boost = boost;
+    }
+    
     public void reset(double x,double y){
         this.setPos(x, y);
         this.setActive(true);

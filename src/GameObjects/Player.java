@@ -5,22 +5,21 @@
  */
 package GameObjects;
 
-import GameObjects.powerUps.powerUpType;
-import gaberun2.GabeRun2;
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  *
  * @author Gabe
  */
 public class Player extends GameObject {
-
     int lives = 3;
-    int freezeT, superSizeT, invT;
+    private int freezeT, superSizeT, invT;
    // boolean freeze,superSize;
     //Should be getters and setters?
     //public List<powerUpType> powers = new ArrayList();
+    private int superSpeedT;
+//    //Only boost once:
+//    boolean boost = false;
+//    //Normal speed before boost:
+//    double nSpeed = 0;
 
     /**
      * Constructs player Object
@@ -96,19 +95,40 @@ public class Player extends GameObject {
         this.invT = invT*60;
     }
     /**
+     * Sets time left on super speed ability
+     * @param superSpeedT 
+     */
+    public void setSuperSpeedT(int superSpeedT){
+        this.superSpeedT = superSpeedT*60;
+        this.boost = 2;
+    }
+    /**
+     * Returns super speed time
+     * @return 
+     */
+    public int getSuperSpeedT(){
+        return this.superSpeedT;
+    }
+    /**
+     * De-increments time of speed ability
+     */
+    public void decSuperSpeedT(){
+        this.superSpeedT--;
+    }
+    /**
      * Gets time left on super size ability
      *
      * @return
      */
     public int getsuperSizeT() {
-        return superSizeT;
+        return this.superSizeT;
     }
 
     /**
      * De-increments time left on super size
      */
     public void dincSuperSizeT() {
-        superSizeT--;
+        this.superSizeT--;
     }
 
     /**
@@ -137,7 +157,7 @@ public class Player extends GameObject {
         this.setSize(60, 60);
         // this.superSize = true;
     }
-
+    
     /**
      * Resets ability times
      */
@@ -146,6 +166,24 @@ public class Player extends GameObject {
         freezeT = 0;
         // superSize = false;
         superSizeT = 0;
+        
+        superSpeedT = 0;
+      
     }
+
+//    public void superSpeed() {
+//        if(!this.boost){
+//            this.boost=true;
+//            this.setSpeed(this.getSpeed()*2);
+//            nSpeed = this.getSpeed();
+//        }
+//    }
+//    public void setBoost(boolean toggle){
+//        this.boost = toggle;
+//    }//TODO: fix boost speed and timer
+//
+//    public double getNSpeed() {
+//        return this.nSpeed;
+//    }
 
 }
