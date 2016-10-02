@@ -11,6 +11,7 @@ import GameObjects.powerUps.PowerUp;
 import GameObjects.powerUps.powerUpType;
 import gaberun2.GabeRun2;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -27,6 +28,7 @@ public class Draw {
     static Color CoinColor = Color.YELLOW;
     static GraphicsContext gs = GabeRun2.gs;
     static Color BarrierColor = Color.BLACK;
+    static Color GUIColor = Color.WHITE;
     
     public static void write(String write, Color clr, double x, double y ){
         Color before = (Color) gs.getFill();
@@ -52,7 +54,7 @@ public class Draw {
         gs.fillOval(enm.getpX(), enm.getpY(),enm.getWitdh(), enm.getHeight());
         gs.setFill(Background);
     }
-    public static void barrir(barrier brr){
+    public static void barrier(barrier brr){
         gs.setFill(BarrierColor);
         gs.fillRect(brr.getpX(), brr.getpY(),brr.getWitdh(), brr.getHeight());
         gs.setFill(Background);
@@ -104,6 +106,13 @@ public class Draw {
             gs.setFill(btn.getTextColor());
             Draw.write("Game Over", btn.getBackColor(), btn.getpX(), btn.getpY(),btn.getSize());
         }//FINISH BUTTON RENDERING AND PUSHING!!!!
+    }
+    public static void menu(){
+        Draw.clear();
+        gs.drawImage(GabeRun2.gabe, 200, 120);
+        Draw.write("Gabe Run 2", GUIColor, 150, 100,50);
+        Draw.write("Press W or Up to start",GUIColor,150,300,25);
+        //TODO: Draw High scores?
     }
     
 }

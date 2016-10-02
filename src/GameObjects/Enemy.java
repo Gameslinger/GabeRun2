@@ -53,15 +53,15 @@ public class Enemy extends GameObject{
            miliCount++;
            
            //Updates second timer about every 60 miliseconds
-           if(miliCount>=60 && !(plr.getInvT()>=0)){
+           if(miliCount>=60){
                //How long should obj persue point before exiting scatter:
                scatterTime+=scatterTInc;
                
                miliCount = 0;
                //Increases randomly every second until it reaches threshold does not inc during scatter:
-               if(!scatter)currentTol += (int) (Math.random() * 5) + 1;
+               if(!scatter && !(plr.getInvT() >= 0))currentTol += (int) (Math.random() * 5) + 1;
                
-               if(currentTol >= scatterTol){
+               if(currentTol >= scatterTol || this.isCollided(scatterX, scatterY)){
                    //Resets count to Tollerance
                   currentTol = 0;
                   //Enters Scatter Mode

@@ -14,7 +14,7 @@ import javafx.scene.paint.Color;
  * @author Gabe
  */
 public enum powerUpType {
-    //invisable,superSpeed
+    //superSpeed
      Freeze,lifeUp,superSize,inv;
     int time = -1;
     /**

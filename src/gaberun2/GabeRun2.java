@@ -35,8 +35,6 @@ public class GabeRun2 extends Application {
     public static  List<Coin> Coins;
     public static List<barrier> barriers;
     public static List<PowerUp> powers;
-     //list of all game Objects:
-    
     //Player Object
     public static Player plr;
     //Which directions to move in:
@@ -45,13 +43,17 @@ public class GabeRun2 extends Application {
      boolean paused = false;
      //Did player run out of lives and game is over:
      boolean gameOver = false;
+     //If it should display main menu:
+     boolean start = true;
      //Current level
      int lvl = 0;
      //Remaining coins
      int coinCount = 0;
-     
+     //Time variables:
      long sTime,mTime = 0;
      
+     //Images
+    public static Image gabe = new Image("/Images/gabe.jpg");
      @Override
      public void init(){
          //Initialize all lists:
@@ -87,7 +89,7 @@ public class GabeRun2 extends Application {
        //  if(plr.getPlay()){
         if(event.getCode()==KeyCode.W){
             up = true;
-          //  start = true;
+            start = false;
         }
         
         if(event.getCode()==KeyCode.S)down=true;
@@ -98,6 +100,7 @@ public class GabeRun2 extends Application {
           
           if(gameOver){
              gameOver=false; 
+             start = true;
              resetLvl();
           }else{
           paused=!paused;
@@ -119,6 +122,7 @@ public class GabeRun2 extends Application {
         if(event.getCode()==KeyCode.A || event.getCode()==KeyCode.LEFT)left=false;
         if(event.getCode()==KeyCode.D || event.getCode()==KeyCode.RIGHT)right=false;
         
+        
          }); 
          //Player Object:
         plr = new Player(300,300,30,30,1.5);
@@ -135,7 +139,7 @@ public class GabeRun2 extends Application {
           }
           if(coinCount<=0)levelUp();
           //If game is going
-          if(!paused && !gameOver){
+          if(!paused && !gameOver && !start){
               
             Draw.clear();
             
@@ -147,14 +151,17 @@ public class GabeRun2 extends Application {
             
             Draw.headsUp(plr,sTime,coinCount,lvl);
             
-            if(plr.getLives()<=0)gameOver=true;
-            
+            if(plr.getLives()<=0)gameOver = true;
+            //If game is over
           }else if(gameOver){
               Draw.write( "Game Over", Color.RED, 150, 200);
               Draw.write("Press ESC to restart", Color.WHITE, 160, 240,35);
-
+              //Main menu displayed:
+          }else if(start){
+             Draw.menu();
+         //Game is paused
           }else{
-              //Game is paused
+              
               
               //TODO: autoCenter string instead of hard coded numbers
               Draw.write("Paused", Color.WHITE, 200, 250);
@@ -239,9 +246,12 @@ public class GabeRun2 extends Application {
             }
         }
     }
+    /**
+    *@deprecated 
+    */
     public void upDateBarriers(){
         for(barrier brr : barriers){
-            Draw.barrir(brr);
+            //Draw.barrir(brr);
         }
     }
     public void levelUp(){
