@@ -71,7 +71,7 @@ public enum powerUpType {
             case inv:
                 return Color.BLUEVIOLET;
             case superSpeed:
-                return Color.AQUAMARINE;
+                return Color.DARKTURQUOISE;
             default:
                 return Color.PURPLE;
         }

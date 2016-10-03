@@ -60,14 +60,13 @@ public abstract class GameObject {
     
     
     /**
-     * THIS IS BROCKEN!!!
-     * @deprecated 
+     * Returns true if object is on that point
      * @param x
      * @param y
      * @return 
      */
     public boolean isCollided(double x, double y){
-      if(Math.abs(this.pX-x)<= this.width && Math.abs(this.pY-y)<=this.height){
+      if(Math.abs(this.pX-x)<=(this.width/2) && Math.abs(this.pY-y)<=(this.height/2)){
           return true;
       }
       return false;

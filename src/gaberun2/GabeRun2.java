@@ -147,7 +147,7 @@ public class GabeRun2 extends Application {
             upDateCoins();
             upDateEnemies();
             upDatePlayer();
-            upDateBarriers();
+            //upDateBarriers();
             
             Draw.headsUp(plr,sTime,coinCount,lvl);
             

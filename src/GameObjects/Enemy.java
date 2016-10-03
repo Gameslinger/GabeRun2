@@ -13,9 +13,9 @@ public class Enemy extends GameObject{
     //Weither or not enemy should break off and go to point
     private boolean scatter = false;
     //Scatter position to go to
-    private double scatterX, scatterY;
+    private double scatterX, scatterY = 300;
     //Long should it take before entering scatter (Scatter Tollerance)
-    private int scatterTol = 20;
+    final private int scatterTol = 20;
     private int currentTol = 0;
     private int scatterTime, scatterTInc=0;
     //Holds miliseconds until checking if obj should enter scatter
@@ -24,8 +24,7 @@ public class Enemy extends GameObject{
    int cornerNum;
     public Enemy(double pX, double pY, double width, double height, double speed) {
         super(pX, pY, width, height, speed);
-        //TODO: Not working
-        cornerNum = ((int) Math.random()) * 4 +1;
+        cornerNum = ((int) (Math.random()) * 4 +1);
     }
     /**
      * Resets Enemy to corner based off of random number set at construction
@@ -54,6 +53,9 @@ public class Enemy extends GameObject{
            
            //Updates second timer about every 60 miliseconds
            if(miliCount>=60){
+               //Creates new point to scatter to!
+               scatterX = Math.random() * 580 + 5;
+               scatterY = Math.random() * 580 + 5;
                //How long should obj persue point before exiting scatter:
                scatterTime+=scatterTInc;
                
@@ -67,9 +69,8 @@ public class Enemy extends GameObject{
                   //Enters Scatter Mode
                   scatter = true;
                   scatterTInc = 1;
-                  //Creates new point to scatter to!
-                  scatterX = Math.random() * 580 + 5;
-                  scatterY = Math.random() * 580 + 5;
+                  
+                  
                   
                }
            }
